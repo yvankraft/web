@@ -42,4 +42,4 @@ Spark), code review bots (CodeRabbit, Greptile, Sourcery, Korbit), dev search
 
 ## Links
 
-- Repository & releases: https://github.com/USER/vibechitech
+- Repository & releases: https://github.com/yvankraft/vibechitech

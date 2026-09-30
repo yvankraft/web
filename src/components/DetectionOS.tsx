@@ -8,7 +8,14 @@ import type { Dictionnaire } from "@/dictionaries";
 
 type OS = "windows" | "macos" | "linux" | "inconnu";
 
-const URL_RELEASES = "https://github.com/USER/vibechitech/releases/latest";
+const REPO = "yvankraft/vibechitech";
+const URL_RELEASES = `https://github.com/${REPO}/releases/latest`;
+const URL_API = `https://api.github.com/repos/${REPO}/releases/latest`;
+
+interface Asset {
+  name: string;
+  url: string;
+}
 
 const fichiers: {
   os: Exclude<OS, "inconnu">;
@@ -29,11 +36,50 @@ function detecterOS(): OS {
   return "inconnu";
 }
 
-export default function DetectionOS({ t }: { t: Dictionnaire["telecharger"] }) {
+function assetsPourOS(assets: Asset[], os: Exclude<OS, "inconnu">): Asset[] {
+  const filtre =
+    os === "windows"
+      ? (n: string) => n.endsWith(".msi") || n.endsWith(".exe")
+      : os === "macos"
+        ? (n: string) => n.endsWith(".dmg")
+        : (n: string) =>
+          n.endsWith(".AppImage") || n.endsWith(".deb");
+  return assets.filter((a) => filtre(a.name));
+}
+
+function labelAsset(nom: string): string {
+  if (nom.includes("aarch64") || nom.includes("arm64")) return "Apple Silicon";
+  if (nom.includes("x64") && nom.endsWith(".dmg")) return "Intel";
+  return nom.slice(nom.lastIndexOf("."));
+}
+
+export default function DetectionOS({
+  t,
+}: {
+  t: Dictionnaire["telecharger"];
+}) {
   const [os, setOS] = useState<OS>("inconnu");
+  const [assets, setAssets] = useState<Asset[]>([]);
+  const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
     setOS(detecterOS());
+    fetch(URL_API)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((release) => {
+        setVersion(release.tag_name ?? null);
+        setAssets(
+          (release.assets ?? []).map(
+            (a: { name: string; browser_download_url: string }) => ({
+              name: a.name,
+              url: a.browser_download_url,
+            }),
+          ),
+        );
+      })
+      .catch(() => {
+        // Pas de release ou API indisponible : repli sur la page Releases.
+      });
   }, []);
 
   const fichierDetecte = fichiers.find((f) => f.os === os);
@@ -50,10 +96,17 @@ export default function DetectionOS({ t }: { t: Dictionnaire["telecharger"] }) {
         </div>
       )}
 
+      {version && (
+        <p className="text-center font-mono text-xs text-muted-foreground">
+          {version}
+        </p>
+      )}
+
       <div className="grid gap-4 sm:grid-cols-3">
         {fichiers.map((fichier) => {
           const Icone = fichier.icone;
           const recommande = fichier.os === os;
+          const cibles = assetsPourOS(assets, fichier.os);
           return (
             <div
               key={fichier.os}
@@ -78,20 +131,36 @@ export default function DetectionOS({ t }: { t: Dictionnaire["telecharger"] }) {
                   {fichier.format}
                 </p>
               </div>
-              <Button
-                render={
-                  <a
-                    href={URL_RELEASES}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
-                nativeButton={false}
-                className="mt-2 w-full"
-              >
-                <Download />
-                {t.bouton}
-              </Button>
+              {cibles.length > 0 ? (
+                <div className="mt-2 flex w-full flex-col gap-2">
+                  {cibles.map((cible) => (
+                    <Button
+                      key={cible.name}
+                      render={<a href={cible.url} />}
+                      nativeButton={false}
+                      className="w-full"
+                    >
+                      <Download />
+                      {t.bouton} — {labelAsset(cible.name)}
+                    </Button>
+                  ))}
+                </div>
+              ) : (
+                <Button
+                  render={
+                    <a
+                      href={URL_RELEASES}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
+                  }
+                  nativeButton={false}
+                  className="mt-2 w-full"
+                >
+                  <Download />
+                  {t.bouton}
+                </Button>
+              )}
             </div>
           );
         })}

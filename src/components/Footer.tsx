@@ -39,12 +39,12 @@ export default function Footer({
         { label: t.documentation, href: `/${langue}/docs` },
         {
           label: "GitHub",
-          href: "https://github.com/USER/vibechitech",
+          href: "https://github.com/yvankraft/vibechitech",
           externe: true,
         },
         {
           label: "Releases",
-          href: "https://github.com/USER/vibechitech/releases/latest",
+          href: "https://github.com/yvankraft/vibechitech/releases/latest",
           externe: true,
         },
       ],

@@ -89,7 +89,7 @@ export default async function Page({ params }: PageProps<"/[lang]/docs">) {
         <p className="text-muted-foreground">
           {d.aide}{" "}
           <a
-            href="https://github.com/USER/vibechitech"
+            href="https://github.com/yvankraft/vibechitech"
             target="_blank"
             rel="noopener noreferrer"
             className="text-violet-600 underline-offset-4 hover:underline dark:text-violet-400"

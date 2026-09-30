@@ -1,0 +1,45 @@
+# vibeChitech
+
+> vibeChitech is a local-first project configurator and roadmap generator for
+> developers. It is a desktop app (Tauri v2) — no backend, no account, no cloud.
+> Define a project (type, platforms, languages, frameworks, architecture) and it
+> generates a personalised checklist covering the whole lifecycle, from
+> brainstorming to deployment and maintenance.
+
+## What it does
+
+- 6-step wizard: project type, platforms, languages, frameworks/engines,
+  architecture (databases, hosting, third-party services, architecture options)
+- Generates a tailored roadmap of 16 phases (~73 detailed steps) with
+  objectives, checklists, pitfalls, tips and official resources
+- Conditional steps based on the chosen stack (e.g. multiplayer game →
+  networking and dedicated server steps; Next.js + Stripe SaaS → Vercel and
+  Stripe payment steps)
+- Full catalogue embedded: 37 project types, 12 platforms, 25 languages,
+  80 frameworks/tools, 11 databases, 16 hosting providers, 26 third-party
+  services, 17 architecture options, and a census of AI coding tools
+- Local JSON persistence via tauri-plugin-store, export/import, offline-first
+
+## AI coding tools catalogue
+
+The app embeds a curated census of AI coding tools across categories:
+autonomous agents (Devin, Jules, OpenAI Codex, OpenHands, Factory, Sweep,
+SWE-agent), IDE/editors (Cursor, Windsurf, Zed, Trae, Void, PearAI, Firebase
+Studio), IDE extensions (GitHub Copilot, Cline, Roo Code, Kilo Code, Continue,
+Sourcegraph Cody, Amazon Q Developer, Gemini Code Assist, JetBrains AI, Tabnine,
+Supermaven, CodeGeeX), CLI agents (Claude Code, Aider, OpenCode, Crush, Gemini
+CLI, Qwen Code), app generators (v0, Bolt.new, Lovable, Replit Agent, GitHub
+Spark), code review bots (CodeRabbit, Greptile, Sourcery, Korbit), dev search
+(Phind, Blackbox AI) and self-hosted options (Tabby, FauxPilot).
+
+## Pages (per locale: /fr /en /de /zh /es)
+
+- / : homepage — concept, how it works, project types, features
+- /catalogue : full technology catalogue summary
+- /fonctionnalites : detailed feature list
+- /telecharger : download page — Windows .msi, macOS .dmg, Linux .AppImage/.deb
+- /docs : usage guide
+
+## Links
+
+- Repository & releases: https://github.com/USER/vibechitech

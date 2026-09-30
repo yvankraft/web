@@ -141,6 +141,7 @@ const de: Dictionnaire = {
     basTexte: "Alle Binaries werden auf",
     basLien: "GitHub Releases",
     basSuffixe: "veröffentlicht. Unter 10 MB, Installation in Sekunden.",
+    macosAstuce: "macOS meldet die App als „beschädigt“? Im Terminal:",
   },
   fonctionnalites: {
     meta: {
@@ -306,7 +307,7 @@ const de: Dictionnaire = {
         titre: "Installation",
         contenu: [
           "Lade das passende Binary für dein System von der Download-Seite oder GitHub Releases: .msi (Windows), .dmg (macOS), .AppImage oder .deb (Linux).",
-          "Unter macOS öffne die .dmg und ziehe vibeChitech in Programme. Falls Gatekeeper den Start blockiert: Rechtsklick → Öffnen.",
+          "Unter macOS öffne die .dmg und ziehe vibeChitech in Programme. Meldet macOS die App als „beschädigt“, führe `xattr -cr /Applications/vibeChitech.app` im Terminal aus.",
           "Unter Windows starte die .msi und folge dem Assistenten. Unter Linux mache die .AppImage ausführbar (chmod +x) und starte sie.",
           "Kein Konto erforderlich: die App funktioniert sofort, offline.",
         ],

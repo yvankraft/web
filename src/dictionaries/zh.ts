@@ -140,6 +140,7 @@ const zh: Dictionnaire = {
     basTexte: "所有二进制文件发布在",
     basLien: "GitHub Releases",
     basSuffixe: "不到 10 MB,几秒即可安装完成。",
+    macosAstuce: "macOS 提示应用「已损坏」?在终端中运行:",
   },
   fonctionnalites: {
     meta: {
@@ -303,7 +304,7 @@ const zh: Dictionnaire = {
         titre: "安装",
         contenu: [
           "从下载页或 GitHub Releases 下载适合你系统的二进制文件:.msi(Windows)、.dmg(macOS)、.AppImage 或 .deb(Linux)。",
-          "在 macOS 上,打开 .dmg 并将 vibeChitech 拖入「应用程序」。如果 Gatekeeper 阻止启动,右键 → 打开。",
+          "在 macOS 上,打开 .dmg 并将 vibeChitech 拖入「应用程序」。如果 macOS 提示应用「已损坏」,请在终端运行 `xattr -cr /Applications/vibeChitech.app`。",
           "在 Windows 上,运行 .msi 并按向导操作。在 Linux 上,为 .AppImage 添加执行权限(chmod +x)后运行。",
           "无需账号:应用开箱即用,支持离线。",
         ],

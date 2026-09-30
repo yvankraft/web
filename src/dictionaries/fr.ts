@@ -140,6 +140,7 @@ const fr = {
     basTexte: "Tous les binaires sont publiés sur",
     basLien: "GitHub Releases",
     basSuffixe: "Moins de 10 Mo, installation en quelques secondes.",
+    macosAstuce: "macOS signale l'app « endommagée » ? Dans le Terminal :",
   },
   fonctionnalites: {
     meta: {
@@ -305,7 +306,7 @@ const fr = {
         titre: "Installation",
         contenu: [
           "Télécharge le binaire adapté à ton système depuis la page Télécharger ou GitHub Releases : .msi (Windows), .dmg (macOS), .AppImage ou .deb (Linux).",
-          "Sous macOS, ouvre le .dmg et glisse vibeChitech dans Applications. Si Gatekeeper bloque le lancement, fais clic droit → Ouvrir.",
+          "Sous macOS, ouvre le .dmg et glisse vibeChitech dans Applications. Si macOS signale l'app « endommagée », lance `xattr -cr /Applications/vibeChitech.app` dans le Terminal.",
           "Sous Windows, lance le .msi et suis l'assistant. Sous Linux, rends le .AppImage exécutable (chmod +x) puis lance-le.",
           "Aucun compte n'est requis : l'app fonctionne immédiatement, hors-ligne.",
         ],

@@ -170,6 +170,13 @@ export default function DetectionOS({
         })}
       </div>
 
+      <p className="text-center text-xs text-muted-foreground">
+        {t.macosAstuce}{" "}
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono">
+          xattr -cr /Applications/vibeChitech.app
+        </code>
+      </p>
+
       <p className="text-center text-sm text-muted-foreground">
         {t.basTexte}{" "}
         <a

@@ -111,8 +111,8 @@ export default function DetectionOS({
             <div
               key={fichier.os}
               className={`flex flex-col items-center gap-3 rounded-xl border border-border bg-card/50 p-6 text-center transition-colors ${recommande
-                  ? "border-violet-500/50 ring-1 ring-violet-500/30"
-                  : ""
+                ? "border-violet-500/50 ring-1 ring-violet-500/30"
+                : ""
                 }`}
             >
               <div className="flex size-12 items-center justify-center rounded-lg bg-accent">
@@ -136,7 +136,11 @@ export default function DetectionOS({
                   {cibles.map((cible) => (
                     <Button
                       key={cible.name}
-                      render={<a href={cible.url} />}
+                      render={
+                        <a
+                          href={`/api/telecharger?fichier=${encodeURIComponent(cible.name)}`}
+                        />
+                      }
                       nativeButton={false}
                       className="w-full"
                     >
